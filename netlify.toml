@@ -1,4 +1,12 @@
 # example netlify.toml
+[dev]                                          
+   framework = "#custom"                                                    
+   command = "yarn dev"             
+   targetPort = 3000
+   debug = true
+   port = 8888
+   publish = "dist"
+   functions = "netlify/functions"
 [build]
   command = "nuxt generate"
   functions = "netlify/functions"
@@ -8,7 +16,7 @@
   for = "/*"
     [headers.values]
     Access-Control-Allow-Origin = "*"
-      
+
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
   #[[redirects]]

@@ -1,4 +1,5 @@
-import { forEach } from 'lodash'
+import { forEach, values } from 'lodash'
+import Vue from 'vue'
 
 export const state = () => ({
   items: {},
@@ -12,10 +13,16 @@ export const actions = {
   },
 }
 
+export const getters = {
+  items(state) {
+    return values(state.items)
+  },
+}
+
 export const mutations = {
   STORE_PRODUCT(state, products) {
     forEach(products, (p) => {
-      state.items[p.id] = p
+      Vue.set(state.items, p.id, p)
     })
   },
 }
