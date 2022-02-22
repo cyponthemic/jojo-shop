@@ -1,7 +1,7 @@
 import { forEach } from 'lodash'
 
 export const state = () => ({
-  products: {},
+  items: {},
 })
 
 export const actions = {
@@ -15,7 +15,7 @@ export const actions = {
 export const mutations = {
   STORE_PRODUCT(state, products) {
     forEach(products, (p) => {
-      state.products[p.id] = p
+      state.items[p.id] = p
     })
   },
 }

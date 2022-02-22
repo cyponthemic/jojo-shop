@@ -1,12 +1,8 @@
 <template>
-  <div>
-    <p v-if="$fetchState.pending">Loading....</p>
-    <p v-else-if="$fetchState.error">Error while fetching mountains</p>
-    <div v-else>
-      <h1 v-for="product in $store.state.products" :key="product.id">
-        Name: {{ product.name }}
-      </h1>
-    </div>
+  <div v-if="$store.state.product">
+    <h1 v-for="product in $store.state.product.items" :key="product.id">
+      Name: {{ product.name }}
+    </h1>
   </div>
 </template>
 
