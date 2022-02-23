@@ -1,9 +1,22 @@
 <template>
   <div>
-    <div v-if="products.length">
-      <ProductTile v-for="product in products" :key="product.id">
-        Name: {{ product.name }}
-      </ProductTile>
+    <ProductList />
+
+    <div>
+      Cart:
+      <ul>
+        <li v-for="item in $store.state.cart.items" :key="item.id">
+          {{ item.name }} / {{ item.quantity }}
+        </li>
+      </ul>
+
+      <button
+        type="submit"
+        elevation="2"
+        @click="$store.dispatch('cart/checkout')"
+      >
+        Checkout
+      </button>
     </div>
   </div>
 </template>
@@ -11,21 +24,14 @@
 <script>
 export default {
   name: 'IndexPage',
-  components: {
-    ProductTile: () => import('@/components/ProductTile.vue'),
-  },
-  async fetch() {
-    try {
-      await this.$store.dispatch('product/fetch')
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log('404', e)
-    }
-  },
   computed: {
     products() {
       return this.$store.getters['product/items']
     },
+  },
+  mounted() {
+    this.$store.dispatch('product/fetch')
+    this.$store.dispatch('prices/fetch')
   },
 }
 </script>
