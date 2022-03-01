@@ -3,6 +3,7 @@ const stripe = require('stripe')(
 )
 exports.handler = async (event, context) => {
   const items = JSON.parse(event.body).items
+  const config = JSON.parse(event.body).config
   // Only allow POST
   if (event.httpMethod !== 'POST' || items?.length < 1) {
     return { statusCode: 405, body: 'Method Not Allowed' }
@@ -11,8 +12,7 @@ exports.handler = async (event, context) => {
   const session = await stripe.checkout.sessions.create({
     line_items: items,
     mode: 'payment',
-    success_url: 'https://example.com/success',
-    cancel_url: 'https://example.com/cancel',
+    ...config,
   })
 
   return {

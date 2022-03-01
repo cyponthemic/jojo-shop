@@ -77,7 +77,7 @@
               </div>
 
               <div class="mt-8">
-                <div class="flow-root">
+                <div v-if="hasItems" class="flow-root">
                   <ul role="list" class="-my-6 divide-y divide-gray-200">
                     <ShoppingCartItem
                       v-for="item in items"
@@ -85,6 +85,11 @@
                       :product="item"
                     />
                   </ul>
+                </div>
+                <div v-else class="flow-root">
+                  <h2 class="text-sm font-medium text-gray-900">
+                    Your cart is empty
+                  </h2>
                 </div>
               </div>
             </div>
@@ -129,10 +134,14 @@
   </div>
 </template>
 <script>
+import { values } from 'lodash'
 export default {
   computed: {
     items() {
-      return this.$store.state.cart.items
+      return this.$store.state.cart.items || {}
+    },
+    hasItems() {
+      return values(this.items).length
     },
   },
 }

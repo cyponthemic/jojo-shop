@@ -39,11 +39,14 @@ export default {
     toggle(state) {
       state.open = !state.open
     },
+    remove(state, payload) {
+      Vue.delete(state.items, payload.id)
+    },
     add(state, payload) {
-      if (state.items[payload.id]) {
-        state.items[payload.id].quantity += payload.quantity
+      if (state.items[payload.price.id]) {
+        state.items[payload.price.id].quantity += payload.quantity
       } else {
-        Vue.set(state.items, payload.id, payload)
+        Vue.set(state.items, payload.price.id, payload)
       }
     },
   },
@@ -52,6 +55,10 @@ export default {
       this.$axios
         .post('/.netlify/functions/checkout', {
           items: values(state.items).map(ProductToLineItem),
+          config: {
+            success_url: window.location.domain + '/success',
+            cancel_url: window.location.href,
+          },
         })
         .then(({ data }) => {
           window.location.href = data

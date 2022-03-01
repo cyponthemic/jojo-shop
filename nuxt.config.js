@@ -23,7 +23,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['./plugins/price.js'],
+  plugins: ['./plugins/price.js', './plugins/vuex-persist.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

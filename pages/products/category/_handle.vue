@@ -1,10 +1,17 @@
 <template>
-  <div></div>
+  <div>
+    <ProductList :category="params.handle" />
+  </div>
 </template>
 
 <script>
 export default {
   name: 'IndexPage',
+  asyncData({ params }) {
+    return {
+      params,
+    }
+  },
   computed: {
     products() {
       return this.$store.getters['product/items']

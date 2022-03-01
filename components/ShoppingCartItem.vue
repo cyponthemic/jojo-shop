@@ -14,7 +14,7 @@
       <div>
         <div class="flex justify-between text-base font-medium text-gray-900">
           <h3>
-            <a href="#"> {{ product.name }} </a>
+            <a href="#"> {{ product.name }} / {{ product.price.nickname }} </a>
           </h3>
           <p class="ml-4">
             {{ (product.price.unit_amount * product.quantity) | price }}
@@ -30,7 +30,8 @@
         <div class="flex">
           <button
             type="button"
-            class="font-medium text-indigo-600 hover:text-indigo-500"
+            class="font-medium text-indigo-500 hover:text-indigo-600"
+            @click.stop="$store.commit('cart/remove', product)"
           >
             Remove
           </button>

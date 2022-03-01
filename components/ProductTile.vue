@@ -1,5 +1,5 @@
 <template>
-  <form class="group relative" @submit.prevent="add">
+  <div class="group relative">
     <div
       class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none"
     >
@@ -12,10 +12,10 @@
     <div class="mt-4 flex justify-between relative">
       <div>
         <h3 class="text-sm text-gray-700">
-          <a href="#">
+          <nuxt-link :to="product.link" href="#">
             <span aria-hidden="true" class="absolute inset-0"></span>
             {{ product.name }}
-          </a>
+          </nuxt-link>
         </h3>
         <p class="mt-1 text-sm text-gray-500">{{ product.description }}</p>
       </div>
@@ -23,17 +23,17 @@
         {{ price && price.unit_amount | price }}
       </p>
     </div>
-    <div class="flex">
+    <div class="flex mt-3">
       <!-- <FormsSelect v-model="quantity"  :items="[1, 2, 3, 4, 5]" label="Quantity"></FormsSelect> -->
-      <button
+      <nuxt-link
+        :to="product.link"
         type="submit"
-        class="w-full text-center inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        @click="add"
+        class="w-full uppercase rounded-lg inline-flex justify-center items-center px-4 py-2 border-2 border-indigo-500 text-sm font-medium shadow-sm text-indigo-500 bg-transparent hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >
-        Button text
-      </button>
+        View
+      </nuxt-link>
     </div>
-  </form>
+  </div>
 </template>
 <script>
 export default {

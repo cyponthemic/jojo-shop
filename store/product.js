@@ -1,6 +1,10 @@
 import { forEach, values } from 'lodash'
 import Vue from 'vue'
 
+const Product = (product) => ({
+  ...product,
+  link: '/products/' + product.metadata.handle,
+})
 export const state = () => ({
   items: {},
 })
@@ -15,7 +19,7 @@ export const actions = {
 
 export const getters = {
   items(state) {
-    return values(state.items)
+    return values(state.items).map((product) => Product(product))
   },
 }
 
