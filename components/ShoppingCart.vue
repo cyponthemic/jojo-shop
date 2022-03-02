@@ -77,16 +77,16 @@
               </div>
 
               <div class="mt-8">
-                <div v-if="hasItems" class="flow-root">
+                <div v-show="hasItems" class="flow-root">
                   <ul role="list" class="-my-6 divide-y divide-gray-200">
                     <ShoppingCartItem
                       v-for="item in items"
-                      :key="item.id"
+                      :key="item.price.id"
                       :product="item"
                     />
                   </ul>
                 </div>
-                <div v-else class="flow-root">
+                <div v-show="!hasItems" class="flow-root">
                   <h2 class="text-sm font-medium text-gray-900">
                     Your cart is empty
                   </h2>
@@ -94,7 +94,10 @@
               </div>
             </div>
 
-            <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
+            <div
+              v-show="hasItems"
+              class="border-t border-gray-200 py-6 px-4 sm:px-6"
+            >
               <div
                 class="flex justify-between text-base font-medium text-gray-900"
               >
