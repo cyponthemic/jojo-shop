@@ -261,8 +261,12 @@ export default {
       }
     },
   },
+
   methods: {
     submit() {
+      if (this.variants.length === 1) {
+        this.variant = this.variants[0].id
+      }
       if (!this.variant) {
         this.error = true
         return

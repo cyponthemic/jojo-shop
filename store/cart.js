@@ -24,6 +24,13 @@ export default {
     items(state) {
       return values(state.items)
     },
+    total_items(state) {
+      return (
+        sumBy(values(state.items), function (item) {
+          return item.quantity
+        }) || 0
+      )
+    },
     total(state) {
       return (
         sumBy(values(state.items), function (item) {

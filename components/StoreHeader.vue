@@ -195,10 +195,7 @@
                   </svg>
                   <span
                     class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
-                    >{{
-                      $store.getters['cart/items'] &&
-                      $store.getters['cart/items'].length
-                    }}</span
+                    >{{ $store.getters['cart/total_items'] }}</span
                   >
                   <span class="sr-only">items in cart, view bag</span>
                 </a>
