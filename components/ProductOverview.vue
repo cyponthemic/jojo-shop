@@ -8,7 +8,8 @@
         >
           <li>
             <div class="flex items-center">
-              <nuxt-link to="/products"
+              <nuxt-link
+                to="/products"
                 href="#"
                 class="mr-2 text-sm font-medium text-gray-900 capitalize"
               >
@@ -30,7 +31,8 @@
 
           <li>
             <div class="flex items-center">
-              <nuxt-link :to="`/products/category/${product.metadata.category}`"              
+              <nuxt-link
+                :to="`/products/category/${product.metadata.category}`"
                 class="mr-2 text-sm font-medium text-gray-900 capitalize"
               >
                 {{ product.metadata.category }}

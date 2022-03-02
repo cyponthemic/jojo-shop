@@ -66,7 +66,11 @@ export default {
         .post('/.netlify/functions/checkout', {
           items: values(state.items).map(ProductToLineItem),
           config: {
-            success_url: window.location.domain + '/success',
+            success_url:
+              window.location.protocol +
+              '//' +
+              window.location.host +
+              '/success',
             cancel_url: window.location.href,
           },
         })
