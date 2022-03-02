@@ -21,6 +21,9 @@ export default {
     }
   },
   getters: {
+    items(state) {
+      return values(state.items)
+    },
     total(state) {
       return (
         sumBy(values(state.items), function (item) {

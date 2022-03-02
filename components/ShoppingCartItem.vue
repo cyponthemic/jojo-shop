@@ -30,7 +30,7 @@
         <div class="flex">
           <button
             type="button"
-            class="font-medium text-indigo-500 hover:text-indigo-600"
+            class="font-medium text-indigo-500 hover:text-indigo-500"
             @click.stop="$store.commit('cart/remove', product)"
           >
             Remove

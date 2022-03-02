@@ -8,7 +8,7 @@
       <div class="text-lg max-w-prose mx-auto">
         <h1>
           <span
-            class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase"
+            class="block text-base text-center text-indigo-500 font-semibold tracking-wide uppercase"
             >JOJO</span
           >
           <span

@@ -23,12 +23,11 @@
         {{ price && price.unit_amount | price }}
       </p>
     </div>
-    <div class="flex mt-3">
+    <div class="flex mt-3 justify-center">
       <!-- <FormsSelect v-model="quantity"  :items="[1, 2, 3, 4, 5]" label="Quantity"></FormsSelect> -->
       <nuxt-link
         :to="product.link"
-        type="submit"
-        class="w-full uppercase rounded-lg inline-flex justify-center items-center px-4 py-2 border-2 border-indigo-500 text-sm font-medium shadow-sm text-indigo-500 bg-transparent hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        class="px-10 tracking-lg uppercase rounded-full inline-flex justify-center items-center px-4 py-2 border-2 border-indigo-500 text-sm font-medium shadow-sm text-indigo-500 bg-transparent hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >
         View
       </nuxt-link>

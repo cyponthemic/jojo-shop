@@ -107,7 +107,7 @@
               <div class="mt-6">
                 <a
                   href="#"
-                  class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  class="flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   @click="$store.dispatch('cart/checkout')"
                   >Checkout</a
                 >
@@ -119,7 +119,7 @@
                   or
                   <button
                     type="button"
-                    class="font-medium text-indigo-600 hover:text-indigo-500"
+                    class="font-medium text-indigo-500 hover:text-indigo-500"
                     @click="$store.commit('cart/close')"
                   >
                     Continue Shopping<span aria-hidden="true"> &rarr;</span>
