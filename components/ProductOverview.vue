@@ -8,12 +8,12 @@
         >
           <li>
             <div class="flex items-center">
-              <a
+              <nuxt-link to="/products"
                 href="#"
                 class="mr-2 text-sm font-medium text-gray-900 capitalize"
               >
                 Shop
-              </a>
+              </nuxt-link>
               <svg
                 width="16"
                 height="20"
@@ -30,12 +30,11 @@
 
           <li>
             <div class="flex items-center">
-              <a
-                href="#"
+              <nuxt-link :to="`/products/category/${product.metadata.category}`"              
                 class="mr-2 text-sm font-medium text-gray-900 capitalize"
               >
                 {{ product.metadata.category }}
-              </a>
+              </nuxt-link>
               <svg
                 width="16"
                 height="20"
