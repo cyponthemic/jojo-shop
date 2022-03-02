@@ -52,4 +52,23 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  generate: {
+    async routes() {
+      const stripe = require('stripe')(
+        'sk_test_51KVvuZAIN5fbbozg6DgyiVPBz5n1taOP8iYob99af0rEK2VNv7CbFiyZZyqmMUdruCb6cTPzD1T06aI4GlUF4T0w00n2maLozJ'
+      )
+
+      const products = await stripe.products.list()
+
+      return [
+        ...products.data.map(
+          (product) => `/products/${product.metadata.handle}`
+        ),
+        ...products.data.map(
+          (product) => `/products/category/${product.metadata.category}`
+        ),
+      ]
+    },
+  },
 }
