@@ -1,5 +1,10 @@
 <template>
-  <div></div>
+  <client-only>
+    <div>
+      <ImageGrid />
+      <FeaturedProduct />
+    </div>
+  </client-only>
 </template>
 
 <script>

@@ -16,7 +16,14 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Playfair+Display&display=swap',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -36,7 +43,14 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-fonts',
   ],
+
+  googleFonts: {
+    families: {
+      Inconsolata: [200, 300, 400, 500],
+    },
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -51,7 +65,16 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ['three'],
+    extend(config, { isDev, isClient }) {
+      config.module.rules.push({
+        test: /\.(glsl|vs|fs|vert|frag)$/,
+        exclude: /node_modules/,
+        use: ['raw-loader', 'glslify-loader'],
+      })
+    },
+  },
 
   generate: {
     async routes() {

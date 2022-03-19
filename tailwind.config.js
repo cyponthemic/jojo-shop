@@ -3,6 +3,10 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   theme: {
     extend: {
+      fontFamily: {
+        body: ['Inconsolata', 'monospace'],
+        sans: ['Inconsolata', 'monospace'],
+      },
       gridTemplateRows: {
         '[auto,auto,1fr]': 'auto auto 1fr',
       },
