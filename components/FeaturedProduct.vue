@@ -11,7 +11,13 @@
         @animCreated="handleAnimation"
       />
     </div>
-    <div class="w-1/2"></div>
+    <div class="w-1/2 lg:h-screen justify-center items-center">
+      <h2 class="text-2xl font-medium">The sauce title</h2>
+      <p>
+        A bit of description about the product, why it's good, how it's made and
+        so on.
+      </p>
+    </div>
   </div>
 </template>
 <script>

@@ -1,6 +1,4 @@
-const stripe = require('stripe')(
-  'sk_test_51KVvuZAIN5fbbozg6DgyiVPBz5n1taOP8iYob99af0rEK2VNv7CbFiyZZyqmMUdruCb6cTPzD1T06aI4GlUF4T0w00n2maLozJ'
-)
+const stripe = require('stripe')(process.env.STRIPE_SECRET)
 exports.handler = async (event, context) => {
   const items = JSON.parse(event.body).items
   const config = JSON.parse(event.body).config

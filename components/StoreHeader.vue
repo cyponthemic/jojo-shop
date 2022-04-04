@@ -215,12 +215,12 @@ export default {
       links: [
         {
           name: 'Sauce',
-          uri: '/products/sauce',
+          uri: '/products/tomato-sauce',
         },
-        {
-          name: 'Merch',
-          uri: '/products/category/merch',
-        },
+        // {
+        //   name: 'Merch',
+        //   uri: '/products/category/merch',
+        // },
         {
           name: 'Wholesale',
           uri: '/wholesale',

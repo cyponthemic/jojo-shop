@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white">
     <div class="pt-6">
-      <nav aria-label="Breadcrumb">
+      <nav v-if="breadcrumbs" aria-label="Breadcrumb">
         <ol
           role="list"
           class="max-w-2xl mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:max-w-7xl lg:px-8"
@@ -63,35 +63,51 @@
         </ol>
       </nav>
 
-      <!-- Image gallery -->
-      <div
-        class="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8"
-      >
-        <div class="aspect-w-3 aspect-h-4 rounded-lg overflow-hidden lg:block">
-          <img
-            :src="product.images[0]"
-            alt="Two each of gray, white, and black shirts laying flat."
-            class="w-full h-full object-center object-cover"
-          />
-        </div>
-      </div>
-
       <!-- Product info -->
       <div
         class="max-w-2xl mx-auto pt-10 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:pt-16 lg:pb-24 lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8"
       >
         <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-          <h1
-            class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl"
+          <!-- Image gallery -->
+          <div
+            v-if="product.metadata.handle === 'tomato-sauce'"
+            class="relative w-full h-full"
           >
-            {{ product.metadata.title || product.name }}
-          </h1>
+            <JojoBottle />
+          </div>
+          <div v-else class="sm:px-6">
+            <div
+              class="aspect-w-4 aspect-h-4 rounded-lg overflow-hidden lg:block"
+            >
+              <img
+                :src="product.images[0]"
+                alt="Two each of gray, white, and black shirts laying flat."
+                class="w-full h-full object-center object-cover"
+              />
+            </div>
+          </div>
         </div>
 
         <!-- Options -->
         <div class="mt-4 lg:mt-0 lg:row-span-3">
+          <h1
+            class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl mb-2"
+          >
+            {{ product.metadata.title || product.name }}
+          </h1>
           <h2 class="sr-only">Product information</h2>
           <p class="text-3xl text-gray-900">{{ amount | price }}</p>
+
+          <!-- Description and details -->
+          <div class="mt-2">
+            <h3 class="sr-only">Description</h3>
+
+            <div class="space-y-6">
+              <p class="text-base text-gray-900">
+                {{ product.metadata.description }}
+              </p>
+            </div>
+          </div>
 
           <form class="mt-10" @submit.prevent="submit">
             <!-- Sizes -->
@@ -181,46 +197,40 @@
               </fieldset>
             </div>
 
-            <button
-              type="submit"
-              class="mt-10 w-full bg-indigo-500 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Add to bag
-            </button>
+            <div class="mt-10 flex space-x-2">
+              <FormsTextField
+                v-model="quantity"
+                name="quantity"
+                min="1"
+                type="number"
+              />
+              <button
+                type="submit"
+                class="w-full bg-indigo-500 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Add to bag
+              </button>
+            </div>
 
             <div v-if="error" class="mt-2 text-center text-indigo-500">
               Select a {{ product.metadata.variant }}
             </div>
           </form>
-        </div>
-
-        <div
-          class="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8"
-        >
-          <!-- Description and details -->
-          <div>
-            <h3 class="sr-only">Description</h3>
-
-            <div class="space-y-6">
-              <p class="text-base text-gray-900">
-                {{ product.metadata.description }}
-              </p>
-            </div>
-          </div>
 
           <div class="mt-10">
             <h2 class="text-sm font-medium text-gray-900">Details</h2>
 
             <div class="mt-4 space-y-6">
               <p class="text-sm text-gray-600">
-                The 6-Pack includes two black, two white, and two heather gray
-                Basic Tees. Sign up for our subscription service and be the
-                first to get new, exciting colors, like our upcoming
-                &quot;Charcoal Gray&quot; limited release.
+                {{ product.metadata.details }}
               </p>
             </div>
           </div>
         </div>
+
+        <div
+          class="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8"
+        ></div>
       </div>
     </div>
   </div>
@@ -232,11 +242,16 @@ export default {
       type: Object,
       required: true,
     },
+    breadcrumbs: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
       variant: null,
       error: false,
+      quantity: 1,
     }
   },
   computed: {
@@ -275,7 +290,7 @@ export default {
 
       this.$store.commit('cart/add', {
         ...this.product,
-        quantity: 1,
+        quantity: this.quantity,
         price: this.price,
       })
       this.$store.commit('cart/open')

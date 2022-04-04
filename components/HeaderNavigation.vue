@@ -16,12 +16,12 @@ export default {
         },
         {
           name: 'Sauce',
-          uri: '/products/category/sauce',
+          uri: '/products/category/tomato-sauce',
         },
-        {
-          name: 'Merch',
-          uri: '/products/category/merch',
-        },
+        // {
+        //   name: 'Merch',
+        //   uri: '/products/category/merch',
+        // },
         {
           name: 'Wholesale',
           uri: '/wholesale',

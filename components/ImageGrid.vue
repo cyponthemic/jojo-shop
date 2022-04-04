@@ -1,9 +1,9 @@
 <template>
   <div class="content relative overflow-hidden">
     <div
-      class="z-10 absolute top-0 left-0 right-0 bottom-0 flex justify-center"
+      class="pointer-events-none z-10 absolute top-0 left-0 right-0 bottom-0 flex justify-center"
     >
-      <img class="jojo-width h-auto" src="/JOJOLOGO.svg" alt="" />
+      <img class="hidden jojo-width h-auto" src="/JOJOLOGO.svg" alt="" />
     </div>
     <div class="grid">
       <div
@@ -21,7 +21,13 @@
 </template>
 <style scoped>
 .jojo-width {
-  width: 17%;
+  width: 50%;
+}
+
+@media screen and (min-width: 53em) {
+  .jojo-width {
+    width: 17%;
+  }
 }
 </style>
 <script>
@@ -147,11 +153,11 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: calc(100vh - 13rem);
+  height: calc(100vh - 105px);
   position: relative;
   align-items: center;
   justify-content: center;
-  max-height: 300px;
+  min-height: 300px;
 }
 
 .grid {
@@ -164,6 +170,13 @@ export default {
   display: grid;
   grid-template-columns: repeat(50, 2%);
   grid-template-rows: repeat(50, 2%);
+}
+
+@media screen and (min-width: 53em) {
+  .grid {
+    grid-template-columns: repeat(50, 2%);
+    grid-template-rows: repeat(50, 2%);
+  }
 }
 
 .grid__item {
@@ -199,6 +212,12 @@ export default {
   grid-area: 10 / 1 / 26 / 7;
 }
 
+@media screen and (min-width: 53em) {
+  .pos-1 {
+    grid-area: 10 / 1 / 26 / 7;
+  }
+}
+
 .pos-2 {
   grid-area: 1 / 18 / 9 / 27;
 }
@@ -211,8 +230,18 @@ export default {
   grid-area: 13 / 11 / 32 / 18;
 }
 
+@media screen and (max-width: 53em) {
+  .pos-4 {
+  }
+}
+
 .pos-5 {
   grid-area: 17 / 32 / 32 / 38;
+}
+
+@media screen and (max-width: 53em) {
+  .pos-5 {
+  }
 }
 
 .pos-6 {
@@ -225,6 +254,12 @@ export default {
 
 .pos-8 {
   grid-area: 38 / 14 / 46 / 22;
+}
+
+@media screen and (max-width: 53em) {
+  .pos-8 {
+    grid-area: 38 / 14 / 46 / 35;
+  }
 }
 
 .pos-9 {

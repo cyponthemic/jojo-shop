@@ -50,7 +50,7 @@ export default {
       state.open = !state.open
     },
     remove(state, payload) {
-      Vue.delete(state.items, payload.id)
+      Vue.delete(state.items, payload.price.id)
     },
     add(state, payload) {
       if (state.items[payload.price.id]) {
