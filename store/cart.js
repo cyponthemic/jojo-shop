@@ -61,10 +61,11 @@ export default {
     },
   },
   actions: {
-    checkout({ state, rootState }) {
+    checkout({ state, rootState, getters }) {
       this.$axios
         .post('/.netlify/functions/checkout', {
           items: values(state.items).map(ProductToLineItem),
+          total: getters.total,
           config: {
             success_url:
               window.location.protocol +

@@ -12,8 +12,8 @@
         "
       >
         <nuxt></nuxt>
-        <div class="max-w-xl mx-auto pt-24 px-6">
-          <img class="w-full" src="/JOJOFOOTER_Light.svg" alt="" />
+        <div class="max-w-xs mx-auto pt-24 px-6">
+          <img class="w-full" src="/JOJOFOOTER_UltraLight.svg" alt="" />
         </div>
 
         <StoreFooter />

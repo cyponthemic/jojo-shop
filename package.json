@@ -33,6 +33,7 @@
     "lodash-es": "^4.17.21",
     "lodosh": "^1.0.0",
     "nuxt": "^2.15.8",
+    "nuxt-rfg-icon": "^0.6.4",
     "raw-loader": "^4.0.2",
     "stripe": "^8.203.0",
     "three": "^0.138.2",

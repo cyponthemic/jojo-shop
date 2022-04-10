@@ -109,7 +109,7 @@
       <p
         class="bg-indigo-500 h-10 flex items-center justify-center text-sm font-medium text-white px-4 sm:px-6 lg:px-8"
       >
-        Store banner here
+        Tshirts coming soon!
       </p>
 
       <nav aria-label="Top" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

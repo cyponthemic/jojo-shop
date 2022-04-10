@@ -171,7 +171,8 @@
                       :class="
                         price.id === variant ? 'ring-2 ring-indigo-500' : ''
                       "
-                      class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer"
+                      :for="`size-choice-${price.id}-label`"
+                      class="group text-center relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer"
                     >
                       <input
                         v-model="variant"
@@ -179,9 +180,11 @@
                         name="size-choice"
                         :value="price.id"
                         class="sr-only"
-                        aria-labelledby="size-choice-1-label"
+                        :aria-labelledby="`size-choice-${price.id}-label`"
                       />
-                      <p id="size-choice-1-label">{{ price.nickname }}</p>
+                      <p :id="`size-choice-${price.id}-label`">
+                        {{ price.nickname }}
+                      </p>
 
                       <!--
                     Active: "border", Not Active: "border-2"
@@ -221,11 +224,28 @@
             <h2 class="text-sm font-medium text-gray-900">Details</h2>
 
             <div class="mt-4 space-y-6">
+              <p
+                class="text-sm text-gray-600"
+                v-html="product.metadata.details"
+              ></p>
+            </div>
+          </div>
+
+          <div class="mt-10">
+            <h2 class="text-sm font-medium text-gray-900">Shipping</h2>
+            <div class="mt-4 space-y-6">
               <p class="text-sm text-gray-600">
-                {{ product.metadata.details }}
+                All delivery options require Full Name & Mobile so we can talk
+                saucy on delivery day.
               </p>
             </div>
           </div>
+          <AccordionItem
+            v-for="(item, index) in shipping"
+            :key="'shipping-' + index"
+            :title="item.title"
+            :description="item.description"
+          />
         </div>
 
         <div
@@ -252,6 +272,27 @@ export default {
       variant: null,
       error: false,
       quantity: 1,
+      shipping: [
+        {
+          title: 'FREE LOCAL MELBOURNE DELIVERY',
+          description: `Click 'Local Delivery' at the checkout & we’ll personally drop JOJO at your door.
+*Inner Melbourne suburbs`,
+        },
+        {
+          title: 'CLICK & COLLECT',
+          description: `Click ‘Pickup Footscray’ to Click & Collect JOJO from our Western Suburbs pickup point <br><br>
+Click ‘Pickup Abbotsford’ to Click & Collect JOJO from our Melbourne pickup point.`,
+        },
+        {
+          title: 'DOMESTIC SHIPPING',
+          description: `Shipping is free for orders over $50 within Australia. <br>
+Orders under $50 are charged a flat rate of $5 for Standard and $10 for Express.`,
+        },
+        {
+          title: 'INTERNATIONAL SHIPPING',
+          description: `JOJO is still in the process of shipping international orders.`,
+        },
+      ],
     }
   },
   computed: {

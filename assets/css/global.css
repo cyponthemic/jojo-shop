@@ -1,0 +1,10 @@
+.jojo-form input {
+  background: transparent;
+  border-bottom: 2px solid white;
+}
+
+.jojo-form input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 0.7;
+}

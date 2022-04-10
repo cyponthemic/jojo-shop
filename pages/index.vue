@@ -2,7 +2,6 @@
   <client-only>
     <div>
       <JojoLogo />
-
       <picture>
         <img
           class="w-full my-16"
@@ -22,6 +21,30 @@
           alt=""
         />
       </picture>
+      <div class="relative py-16 overflow-hidden">
+        <div class="relative px-4 sm:px-6 lg:px-8">
+          <div class="text-lg max-w-prose mx-auto text-center">
+            <h1>
+              <span
+                class="block text-base text-center text-indigo-500 font-semibold tracking-wide uppercase"
+                >JOJO</span
+              >
+              <span
+                class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
+              >
+                About us
+              </span>
+            </h1>
+            <p class="mt-8 text-xl text-gray-500 leading-8">
+              A family tradition now ready to share with the world. Small batch
+              and handmade in Melbourne. <br />
+              No preservatives, no additives, no nasties. Only good things
+              inside. A sauce for the whole community to be shared and loved
+              time & time again.
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div id="sauce">
         <ProductOverview
@@ -35,6 +58,37 @@
 </template>
 
 <script>
+const PRODUCT = {
+  id: 'prod_LPixOQzzMbk5RV',
+  object: 'product',
+  active: true,
+  attributes: [],
+  created: 1648615935,
+  description:
+    'Product Description:Tomato Sauce. Handmade in Melbourne.Whatâ€™s inside: Tomatoes (Aussie Grown), Garlic, Vinegar, Salt, Sugar & SpiceItâ€™s sauce like youâ€™ve never sauced before.  ketchup & chutney collidedEnjoy JOJO on everything. Vegan.',
+  images: [
+    'https://files.stripe.com/links/MDB8YWNjdF8xS1Z2dVpBSU41ZmJib3pnfGZsX2xpdmVfQ25SSVNZRUZWT2VJYkR1M21lRzk0VGNl00RRYxAFQj',
+  ],
+  livemode: true,
+  metadata: {
+    category: 'sauce',
+    title: 'Tomato Sauce',
+    size: 'Size',
+    handle: 'tomato-sauce',
+    description: 'Tomato Sauce. Handmade in Melbourne.',
+    details:
+      'Tomatoes (Aussie Grown), Garlic, Vinegar, Salt, Sugar & SpiceItâ€™s sauce like youâ€™ve never sauced before. ketchup & chutney collidedEnjoy JOJO on everything. Vegan.',
+  },
+  name: 'Tomato Sauce',
+  package_dimensions: null,
+  shippable: null,
+  statement_descriptor: null,
+  tax_code: 'txcd_20030000',
+  type: 'service',
+  unit_label: null,
+  updated: 1649066338,
+  url: null,
+}
 export default {
   name: 'IndexPage',
   computed: {
@@ -42,8 +96,10 @@ export default {
       return this.$store.getters['product/items']
     },
     product() {
-      return this.products.find(
-        (product) => product?.metadata.handle === 'tomato-sauce'
+      return (
+        this.products.find(
+          (product) => product?.metadata.handle === 'tomato-sauce'
+        ) || PRODUCT
       )
     },
   },

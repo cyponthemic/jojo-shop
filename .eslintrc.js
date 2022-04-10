@@ -18,5 +18,11 @@ module.exports = {
         ignores: ['default', 'wholesale'],
       },
     ],
+    'vue/no-html': [
+      'error',
+      {
+        ignores: ['*'],
+      },
+    ],
   },
 }
