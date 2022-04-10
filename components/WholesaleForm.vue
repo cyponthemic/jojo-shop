@@ -61,7 +61,7 @@
         <div class="h-6" data-v-701601a0=""></div>
         <div class="w-full flex justify-end" data-v-701601a0="">
           <button
-            type="button"
+            type="submit"
             class="text-blue bg-indigo hover:bg-blue hover:text-indigo border-4 border-solid border-white my-3 px-4 py-3 leading-none"
             data-v-701601a0=""
           >
