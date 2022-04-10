@@ -180,9 +180,10 @@
                         name="size-choice"
                         :value="price.id"
                         class="sr-only"
+                         :id="`size-choice-${price.id}-label`"
                         :aria-labelledby="`size-choice-${price.id}-label`"
                       />
-                      <p :id="`size-choice-${price.id}-label`">
+                      <p>
                         {{ price.nickname }}
                       </p>
 
