@@ -2,7 +2,7 @@
   <div class="py-16 bg-indigo-500 text-white flex justify-center items-center">
     <div class="mx-auto">
       <form
-        name="contactus"
+        name="wholesale"
         action="/thanks"
         method="post"
         netlify
