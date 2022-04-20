@@ -67,14 +67,18 @@
       <div
         class="max-w-2xl mx-auto pt-10 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:pt-16 lg:pb-24 lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8"
       >
-        <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+        <div
+          class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8"
+          :class="{ 'lg:overflow-auto lg:h-screen': showOtherImages }"
+        >
           <!-- Image gallery -->
           <div
             v-if="product.metadata.handle === 'tomato-sauce'"
-            class="relative w-full h-full"
+            class="relative w-full"
           >
             <JojoBottle />
           </div>
+
           <div v-else class="sm:px-6">
             <div
               class="aspect-w-4 aspect-h-4 rounded-lg overflow-hidden lg:block"
@@ -86,6 +90,27 @@
               />
             </div>
           </div>
+          <template v-if="showOtherImages">
+            <picture v-for="i in 5" :key="i" class="hidden lg:block">
+              <img
+                class="w-full my-16"
+                sizes="(max-width: 1400px) 100vw, 1400px"
+                srcset="
+                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_200.jpg   200w,
+                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_568.jpg   568w,
+                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_809.jpg   809w,
+                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_973.jpg   973w,
+                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1140.jpg 1140w,
+                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1271.jpg 1271w,
+                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1395.jpg 1395w,
+                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1399.jpg 1399w,
+                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1400.jpg 1400w
+                "
+                src="/banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1400.jpg"
+                alt=""
+              />
+            </picture>
+          </template>
         </div>
 
         <!-- Options -->
@@ -175,12 +200,12 @@
                       class="group text-center relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer"
                     >
                       <input
+                        :id="`size-choice-${price.id}-label`"
                         v-model="variant"
                         type="radio"
                         name="size-choice"
                         :value="price.id"
                         class="sr-only"
-                         :id="`size-choice-${price.id}-label`"
                         :aria-labelledby="`size-choice-${price.id}-label`"
                       />
                       <p>
@@ -248,10 +273,27 @@
             :description="item.description"
           />
         </div>
-
-        <div
-          class="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8"
-        ></div>
+        <template v-if="showOtherImages">
+          <picture v-for="i in 5" :key="i" class="lg:hidden">
+            <img
+              class="w-full my-16"
+              sizes="(max-width: 1400px) 100vw, 1400px"
+              srcset="
+                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_200.jpg   200w,
+                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_568.jpg   568w,
+                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_809.jpg   809w,
+                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_973.jpg   973w,
+                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1140.jpg 1140w,
+                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1271.jpg 1271w,
+                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1395.jpg 1395w,
+                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1399.jpg 1399w,
+                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1400.jpg 1400w
+              "
+              src="/banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1400.jpg"
+              alt=""
+            />
+          </picture>
+        </template>
       </div>
     </div>
   </div>
@@ -264,6 +306,10 @@ export default {
       required: true,
     },
     breadcrumbs: {
+      type: Boolean,
+      default: true,
+    },
+    showOtherImages: {
       type: Boolean,
       default: true,
     },

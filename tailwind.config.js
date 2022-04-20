@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inconsolata', 'monospace'],
-        sans: ['Inconsolata', 'monospace'],
+        mono: ['Inconsolata', 'monospace'],
+        body: ['Arial', 'sans-serif'],
+        sans: ['Arial', 'sans-serif'],
       },
       gridTemplateRows: {
         '[auto,auto,1fr]': 'auto auto 1fr',

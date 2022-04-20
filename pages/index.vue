@@ -1,10 +1,13 @@
 <template>
-  <client-only>
-    <div>
-      <JojoLogo />
+  <div>
+    <JojoLogo />
+    <!-- <parralax-wrapper/> -->
+    <div class="container xl:pt-32 xl:px-32 mx-auto">
       <picture>
         <img
           class="w-full my-16"
+          data-aos="fade-up"
+          data-aos-offset="200"
           sizes="(max-width: 1400px) 100vw, 1400px"
           srcset="
             /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_200.jpg   200w,
@@ -21,43 +24,46 @@
           alt=""
         />
       </picture>
-      <div class="relative py-16 overflow-hidden">
-        <div class="relative px-4 sm:px-6 lg:px-8">
-          <div class="text-lg max-w-prose mx-auto text-center">
-            <h1>
-              <span
-                class="block text-base text-center text-indigo-500 font-semibold tracking-wide uppercase"
-                >JOJO</span
-              >
-              <span
-                class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
-              >
-                About us
-              </span>
-            </h1>
-            <p class="mt-8 text-xl text-gray-500 leading-8">
-              A family tradition now ready to share with the world. Small batch
-              and handmade in Melbourne. <br />
-              No preservatives, no additives, no nasties. Only good things
-              inside. A sauce for the whole community to be shared and loved
-              time & time again.
-            </p>
-          </div>
+    </div>
+    <div class="relative pb-32 xl:pb-64 overflow-hidden">
+      <div class="relative px-4 sm:px-6 lg:px-8">
+        <div class="text-lg max-w-prose mx-auto text-center">
+          <h1>
+            <span
+              class="block text-base text-center text-indigo-500 font-semibold tracking-wide uppercase"
+              >JOJO</span
+            >
+            <span
+              class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
+            >
+              About us
+            </span>
+          </h1>
+          <p class="mt-8 text-xl text-gray-500 leading-8">
+            A family tradition now ready to share with the world. Small batch
+            and handmade in Melbourne. <br />
+            No preservatives, no additives, no nasties. Only good things inside.
+            A sauce for the whole community to be shared and loved time & time
+            again.
+          </p>
         </div>
       </div>
-
-      <div id="sauce">
-        <ProductOverview
-          v-if="product"
-          :product="product"
-          :breadcrumbs="false"
-        />
-      </div>
     </div>
-  </client-only>
+    <div id="sauce">
+      <ProductOverview
+        v-if="product"
+        :product="product"
+        :show-other-images="false"
+        :breadcrumbs="false"
+      />
+    </div>
+
+    <ImageGrid />
+  </div>
 </template>
 
 <script>
+import ParralaxWrapper from '~/components/ParralaxWrapper.vue'
 const PRODUCT = {
   id: 'prod_LPixOQzzMbk5RV',
   object: 'product',
@@ -91,6 +97,7 @@ const PRODUCT = {
 }
 export default {
   name: 'IndexPage',
+  components: { ParralaxWrapper },
   computed: {
     products() {
       return this.$store.getters['product/items']

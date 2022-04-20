@@ -132,7 +132,7 @@ export default {
               {
                 duration: 3,
                 ease: 'Power1.easeOut',
-                opacity: 0.6,
+                opacity: 0.9,
                 stagger: { amount: 0.6, grid: 'auto', from: 'center' },
               },
               0
@@ -152,30 +152,38 @@ export default {
 .content {
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  height: calc(100vh - 105px);
   position: relative;
   align-items: center;
   justify-content: center;
-  min-height: 300px;
 }
 
 .grid {
   pointer-events: none;
-  position: absolute;
-  width: 110%;
-  height: 110%;
-  top: -5%;
-  left: -5%;
+
   display: grid;
-  grid-template-columns: repeat(50, 2%);
-  grid-template-rows: repeat(50, 2%);
+  grid-template-columns: repeat(4, 25vw);
+  grid-template-rows: repeat(2, 25vw);
 }
 
 @media screen and (min-width: 53em) {
   .grid {
     grid-template-columns: repeat(50, 2%);
     grid-template-rows: repeat(50, 2%);
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: calc(100vh - 105px);
+    position: relative;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -207,69 +215,55 @@ export default {
 }
 
 /* Shorthand grid-area: grid-row-start / grid-column-start / grid-row-end / grid-column-end */
-
-.pos-1 {
-  grid-area: 10 / 1 / 26 / 7;
-}
-
-@media screen and (min-width: 53em) {
+/* Shorthand grid-area: grid-row-start / grid-column-start / grid-row-end / grid-column-end */
+@media screen and (min-width: 768px) {
   .pos-1 {
     grid-area: 10 / 1 / 26 / 7;
   }
-}
 
-.pos-2 {
-  grid-area: 1 / 18 / 9 / 27;
-}
+  .pos-2 {
+    grid-area: 10 / 20 / 22 / 30;
+  }
 
-.pos-3 {
-  grid-area: 1 / 36 / 14 / 42;
-}
+  .pos-3 {
+    grid-area: 1 / 36 / 14 / 42;
+  }
 
-.pos-4 {
-  grid-area: 13 / 11 / 32 / 18;
-}
-
-@media screen and (max-width: 53em) {
   .pos-4 {
+    grid-area: 13 / 11 / 32 / 18;
   }
-}
 
-.pos-5 {
-  grid-area: 17 / 32 / 32 / 38;
-}
-
-@media screen and (max-width: 53em) {
   .pos-5 {
+    grid-area: 17 / 32 / 32 / 38;
   }
-}
 
-.pos-6 {
-  grid-area: 20 / 46 / 28 / 51;
-}
+  .pos-6 {
+    grid-area: 20 / 46 / 28 / 51;
+  }
 
-.pos-7 {
-  grid-area: 43 / 1 / 51 / 10;
-}
+  .pos-7 {
+    grid-area: 43 / 1 / 51 / 10;
+  }
 
-.pos-8 {
-  grid-area: 38 / 14 / 46 / 22;
-}
-
-@media screen and (max-width: 53em) {
   .pos-8 {
-    grid-area: 38 / 14 / 46 / 35;
+    grid-area: 38 / 14 / 46 / 22;
+  }
+
+  .pos-9 {
+    grid-area: 40 / 26 / 51 / 32;
+  }
+
+  .pos-10 {
+    grid-area: 37 / 39 / 48 / 47;
   }
 }
 
-.pos-9 {
-  grid-area: 40 / 26 / 51 / 32;
+@media screen and (max-width: 769px) {
+  .pos-9,
+  .pos-10 {
+    display: none;
+  }
 }
-
-.pos-10 {
-  grid-area: 37 / 39 / 48 / 47;
-}
-
 .content__title {
   font-family: bely-display, sans-serif;
   font-weight: 400;

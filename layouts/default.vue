@@ -16,6 +16,25 @@
           <img class="w-full" src="/JOJOFOOTER_UltraLight.svg" alt="" />
         </div>
 
+        <vue-instagram
+          token="accessTokenHere"
+          :count="5"
+          :tags="['hashtag1', 'hashtag2']"
+          media-type="image"
+        >
+          <template #loading="props">
+            <h1 v-if="props.loading" class="fancy-loading">
+              Loading, please wait...
+            </h1>
+          </template>
+          <template #feeds="props">
+            <li class="fancy-list">{{ props.feed.link }}</li>
+          </template>
+          <template #error="props">
+            <div class="fancy-alert">{{ props.error.error_message }}</div>
+          </template>
+        </vue-instagram>
+
         <StoreFooter />
       </div>
     </div>
