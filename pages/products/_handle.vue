@@ -1,12 +1,32 @@
 <template>
-  <ProductOverview v-if="product && product.id" :product="product" />
+  <ProductOverview v-if="product && product.id" :product="{...product, ...data.story.content}" />
 </template>
 <script>
 export default {
   name: 'ProductPage',
-  asyncData({ params }) {
+   async asyncData(context) {
+    const version =
+      context.query._storyblok || context.isDev ? 'draft' : 'published'
+    const endpoint = `cdn/stories/products/${context.params.handle}`
+
+    const data = await context.app.$storyapi
+      .get(endpoint, {
+        version,        
+        cv: context.store.state.cacheVersion
+      })
+      .then((res) => {
+        return res.data
+      })
+      .catch((res) => {
+        context.error({
+          statusCode: res.response.status,
+          message: res.response.data
+        })
+      })
+
     return {
-      params,
+      params: context.params,
+      data
     }
   },
   computed: {
@@ -23,5 +43,6 @@ export default {
     this.$store.dispatch('product/fetch')
     this.$store.dispatch('prices/fetch')
   },
+
 }
 </script>

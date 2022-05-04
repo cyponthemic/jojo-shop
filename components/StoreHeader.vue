@@ -107,9 +107,10 @@
 
     <header class="relative bg-white">
       <p
+      v-if="settings && settings.banner_text"
         class="bg-indigo-500 h-10 flex items-center justify-center text-sm font-medium text-white px-4 sm:px-6 lg:px-8"
       >
-        Tshirts coming soon!
+       {{ settings.banner_text }}
       </p>
 
       <nav aria-label="Top" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

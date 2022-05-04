@@ -37,6 +37,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     './plugins/price.js',
+    './plugins/settings.js',
     './plugins/vuex-persist.js',
     { src: './plugins/aos.js', ssr: false },
   ],
@@ -57,6 +58,10 @@ export default {
     families: {
       Inconsolata: [200, 300, 400, 500],
     },
+  },
+
+  router: {
+    middleware: ['storyblok']
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -135,6 +140,13 @@ export default {
           },
         },
       },
+    ],
+    [
+      'storyblok-nuxt',
+      {
+        accessToken: 'zaP19JbOdrLk99V93b89PAtt',
+        cacheProvider: 'memory'
+      }
     ],
   ],
 

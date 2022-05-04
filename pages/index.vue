@@ -98,6 +98,30 @@ const PRODUCT = {
 export default {
   name: 'IndexPage',
   components: { ParralaxWrapper },
+  async asyncData(context) {
+    const version =
+      context.query._storyblok || context.isDev ? 'draft' : 'published'
+    const endpoint = `cdn/stories/home`
+
+    const data = await context.app.$storyapi
+      .get(endpoint, {
+        version,        
+        cv: context.store.state.cacheVersion
+      })
+      .then((res) => {
+        return res.data
+      })
+      .catch((res) => {
+        context.error({
+          statusCode: res.response.status,
+          message: res.response.data
+        })
+      })
+
+    return {     
+      data
+    }
+  },
   computed: {
     products() {
       return this.$store.getters['product/items']

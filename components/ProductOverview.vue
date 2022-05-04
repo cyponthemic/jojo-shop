@@ -90,27 +90,15 @@
               />
             </div>
           </div>
-          <template v-if="showOtherImages">
-            <picture v-for="i in 5" :key="i" class="hidden lg:block">
-              <img
-                class="w-full my-16"
-                sizes="(max-width: 1400px) 100vw, 1400px"
-                srcset="
-                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_200.jpg   200w,
-                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_568.jpg   568w,
-                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_809.jpg   809w,
-                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_973.jpg   973w,
-                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1140.jpg 1140w,
-                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1271.jpg 1271w,
-                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1395.jpg 1395w,
-                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1399.jpg 1399w,
-                  /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1400.jpg 1400w
-                "
-                src="/banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1400.jpg"
-                alt=""
-              />
-            </picture>
-          </template>
+           <template v-if="showOtherImages">
+          <picture v-for="image in product.additionalImages" :key="image.id" class="hidden lg:block">
+            <img
+              class="w-full my-16"           
+              :src="image.filename"
+              alt=""
+            />
+          </picture>
+        </template>
         </div>
 
         <!-- Options -->
@@ -274,22 +262,10 @@
           />
         </div>
         <template v-if="showOtherImages">
-          <picture v-for="i in 5" :key="i" class="lg:hidden">
+          <picture v-for="image in product.additionalImages" :key="image.id" class="lg:hidden">
             <img
-              class="w-full my-16"
-              sizes="(max-width: 1400px) 100vw, 1400px"
-              srcset="
-                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_200.jpg   200w,
-                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_568.jpg   568w,
-                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_809.jpg   809w,
-                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_973.jpg   973w,
-                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1140.jpg 1140w,
-                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1271.jpg 1271w,
-                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1395.jpg 1395w,
-                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1399.jpg 1399w,
-                /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1400.jpg 1400w
-              "
-              src="/banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1400.jpg"
+              class="w-full my-16"           
+              :src="image.filename"
               alt=""
             />
           </picture>
