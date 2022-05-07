@@ -58,7 +58,7 @@
       />
     </div>
 
-    <ImageGrid />
+    <ImageGrid v-if="false" />
   </div>
 </template>
 
