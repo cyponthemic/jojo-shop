@@ -112,6 +112,7 @@ exports.handler = async (event, context) => {
     .filter((rate) => (rate.max || 999) > total)
     .map((rate) => {
       delete rate.min
+      delete rate.max
       return rate
     })
 

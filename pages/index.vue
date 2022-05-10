@@ -25,7 +25,7 @@
         />
       </picture>
     </div>
-    <div class="relative pb-32 xl:pb-64 overflow-hidden">
+    <div class="relative pb-32 xl:pb-64 overflow-hidden" v-if="false">
       <div class="relative px-4 sm:px-6 lg:px-8">
         <div class="text-lg max-w-prose mx-auto text-center">
           <h1>
@@ -58,7 +58,7 @@
       />
     </div>
 
-    <ImageGrid v-if="false" />
+    <ImageGrid v-if="false8" />
   </div>
 </template>
 
