@@ -1,64 +1,10 @@
 <template>
   <div>
     <JojoLogo />
-    <!-- <parralax-wrapper/> -->
-    <div class="container xl:pt-32 xl:px-32 mx-auto">
-      <picture>
-        <img
-          class="w-full my-16"
-          data-aos="fade-up"
-          data-aos-offset="200"
-          sizes="(max-width: 1400px) 100vw, 1400px"
-          srcset="
-            /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_200.jpg   200w,
-            /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_568.jpg   568w,
-            /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_809.jpg   809w,
-            /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_973.jpg   973w,
-            /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1140.jpg 1140w,
-            /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1271.jpg 1271w,
-            /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1395.jpg 1395w,
-            /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1399.jpg 1399w,
-            /banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1400.jpg 1400w
-          "
-          src="/banner_for_front_page_vou5ko/banner_for_front_page_vou5ko_c_scale-w_1400.jpg"
-          alt=""
-        />
-      </picture>
-    </div>
-    <div class="relative pb-32 xl:pb-64 overflow-hidden" v-if="false">
-      <div class="relative px-4 sm:px-6 lg:px-8">
-        <div class="text-lg max-w-prose mx-auto text-center">
-          <h1>
-            <span
-              class="block text-base text-center text-indigo-500 font-semibold tracking-wide uppercase"
-              >JOJO</span
-            >
-            <span
-              class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
-            >
-              About us
-            </span>
-          </h1>
-          <p class="mt-8 text-xl text-gray-500 leading-8">
-            A family tradition now ready to share with the world. Small batch
-            and handmade in Melbourne. <br />
-            No preservatives, no additives, no nasties. Only good things inside.
-            A sauce for the whole community to be shared and loved time & time
-            again.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div id="sauce">
-      <ProductOverview
-        v-if="product"
-        :product="product"
-        :show-other-images="false"
-        :breadcrumbs="false"
-      />
-    </div>
 
-    <ImageGrid v-if="false8" />
+    <ImageGrid v-if="false" />
+
+    <StoryblokContentBuilder :modules="data.story.content.body"/>
   </div>
 </template>
 
@@ -105,7 +51,7 @@ export default {
 
     const data = await context.app.$storyapi
       .get(endpoint, {
-        version,        
+        version,
         cv: context.store.state.cacheVersion
       })
       .then((res) => {
@@ -118,7 +64,7 @@ export default {
         })
       })
 
-    return {     
+    return {
       data
     }
   },
@@ -137,6 +83,26 @@ export default {
   mounted() {
     this.$store.dispatch('product/fetch')
     this.$store.dispatch('prices/fetch')
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge()
+
+      // Use the input event for instant update of content
+      storyblokInstance.on('input', (event) => {
+        console.log(this.story.content)
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      })
+
+      // Use the bridge to listen the events
+      storyblokInstance.on(['published', 'change'], (event) => {
+        // window.location.reload()
+        this.$nuxt.$router.go({
+          path: this.$nuxt.$router.currentRoute,
+          force: true,
+        })
+      })
+    })
   },
 }
 </script>

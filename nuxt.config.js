@@ -52,6 +52,7 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
+    '@nuxtjs/composition-api/module'
   ],
 
   googleFonts: {

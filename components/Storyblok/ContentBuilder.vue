@@ -8,3 +8,13 @@
         ></component>
     </div>
 </template>
+<script>
+  export default {
+    props: {
+      modules: {
+        required: true,
+        type: Array
+      }
+    }
+  }
+</script>
