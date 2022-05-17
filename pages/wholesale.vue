@@ -26,12 +26,36 @@ export default {
       data
     }
   },
+  mounted() {
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge()
+
+      // Use the input event for instant update of content
+      storyblokInstance.on('input', (event) => {
+        console.log(this.story.content)
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      })
+
+      // Use the bridge to listen the events
+      storyblokInstance.on(['published', 'change'], (event) => {
+        // window.location.reload()
+        this.$nuxt.$router.go({
+          path: this.$nuxt.$router.currentRoute,
+          force: true,
+        })
+      })
+    })
+  }
 }
 </script>
 
 <template>
   <div>
-    <StoryblokContentBuilder :modules="data.story.content.body"></StoryblokContentBuilder>
+    <StoryblokContentBuilder
+      :modules="data.story.content.body"
+    ></StoryblokContentBuilder>
     <WholesaleForm />
   </div>
 </template>
